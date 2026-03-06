@@ -1,0 +1,42 @@
+[
+    {
+        "id": "66d278fd-16bb-4ff5-b486-c610c5e8d90b",
+        "label": "Pneumonia",
+        "probability": "69.4%",
+        "confidence": "Low",
+        "is_pneumonia": true,
+        "original_image": "/static/uploads/66d278fd-16bb-4ff5-b486-c610c5e8d90b.jpg",
+        "overlay_image": "/static/uploads/overlay_66d278fd-16bb-4ff5-b486-c610c5e8d90b.jpg",
+        "timestamp": "2026-02-23 10:51:53"
+    },
+    {
+        "id": "1280aff8-fb74-4c79-9b36-bfe8b928aec4",
+        "label": "Normal",
+        "probability": "39.1%",
+        "confidence": "Low",
+        "is_pneumonia": false,
+        "original_image": "/static/uploads/1280aff8-fb74-4c79-9b36-bfe8b928aec4.jpg",
+        "overlay_image": "/static/uploads/overlay_1280aff8-fb74-4c79-9b36-bfe8b928aec4.jpg",
+        "timestamp": "2026-02-21 18:30:55"
+    },
+    {
+        "id": "979b9571-d1a2-42f1-8e95-d61ead46a107",
+        "label": "Normal",
+        "probability": "43.8%",
+        "confidence": "Low",
+        "is_pneumonia": false,
+        "original_image": "/static/uploads/979b9571-d1a2-42f1-8e95-d61ead46a107.jpg",
+        "overlay_image": "/static/uploads/overlay_979b9571-d1a2-42f1-8e95-d61ead46a107.jpg",
+        "timestamp": "2026-02-21 18:27:46"
+    },
+    {
+        "id": "71f90f12-7b2b-49c6-b126-910ff89bb487",
+        "label": "Normal",
+        "probability": "43.3%",
+        "confidence": "Low",
+        "is_pneumonia": false,
+        "original_image": "/static/uploads/71f90f12-7b2b-49c6-b126-910ff89bb487.jpg",
+        "overlay_image": "/static/uploads/overlay_71f90f12-7b2b-49c6-b126-910ff89bb487.jpg",
+        "timestamp": "2026-02-21 17:29:57"
+    }
+]

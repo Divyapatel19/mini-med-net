@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transparent Mini-Med | Clinical Diagnosis</title>
+    <!-- Modern Typography -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Outfit:wght@400;700&display=swap"
+        rel="stylesheet">
+    <!-- UI Styling -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo-section">
+                <span class="logo-icon">🩺</span>
+                <h1>Mini-Med</h1>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-item active" data-view="dashboard">Dashboard</div>
+                <div class="nav-item" data-view="history">Patient History</div>
+                <div class="nav-item" data-view="settings">Settings</div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <div class="ethics-badge">RESEARCH USE ONLY</div>
+                <p class="ethics-text">Clinical validation pending. Consult a physician.</p>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="header">
+                <div class="header-titles">
+                    <h2 id="view-title">Transparent Medical Diagnosis</h2>
+                    <p id="view-subtitle">Explainable AI for Chest X-Ray Analysis</p>
+                </div>
+                <div class="model-status">
+                    <span class="status-dot"></span>
+                    MiniMedNet v1.0 Active
+                </div>
+            </header>
+
+            <!-- Dashboard View -->
+            <div id="dashboard-view" class="view-container active">
+                <div class="grid-layout">
+                    <!-- Demo Mode Warning -->
+                    <div id="demo-mode-warning" class="banner warning-banner hidden">
+                        <span class="banner-icon">⚠️</span>
+                        <div class="banner-text">
+                            <strong>DEMO MODE ACTIVE</strong>
+                            <p>Currently using random weights. Predictions are for UI testing only and will not be
+                                accurate.
+                                <a href="#setup-guide" id="setup-link">Learn how to train.</a>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Upload Section -->
+                    <section class="card upload-section">
+                        <h3>Diagnostic Scan</h3>
+                        <p class="section-desc">Upload a Posteroanterior (PA) view X-ray for analysis.</p>
+
+                        <div id="drop-zone" class="drop-zone">
+                            <div class="drop-zone-content">
+                                <span class="upload-icon">📤</span>
+                                <p>Drag & drop or <span class="highlight">browse</span></p>
+                                <span class="file-hint">JPG, PNG (max 16MB)</span>
+                            </div>
+                            <input type="file" id="file-input" hidden accept="image/*">
+                        </div>
+
+                        <div id="preview-container" class="preview-container hidden">
+                            <img id="image-preview" src="" alt="Preview">
+                            <button id="analyze-btn" class="primary-btn">Analyze High-Level Features</button>
+                        </div>
+
+                        <div class="settings-panel">
+                            <label for="threshold-range">Diagnostic Sensitivity (Threshold)</label>
+                            <input type="range" id="threshold-range" min="0" max="1" step="0.05" value="0.5">
+                            <div class="range-labels">
+                                <span>Balanced</span>
+                                <span id="threshold-value">0.50</span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Results Section -->
+                    <section id="results-section" class="card results-section empty">
+                        <div class="empty-state">
+                            <span class="empty-icon">📂</span>
+                            <p>Awaiting scan upload...</p>
+                        </div>
+
+                        <div id="results-content" class="results-content hidden">
+                            <div id="verdict-banner" class="verdict-banner">
+                                <div class="verdict-label">
+                                    <span class="label-text">DIAGNOSIS</span>
+                                    <h4 id="prediction-text">---</h4>
+                                </div>
+                                <div class="verdict-metric">
+                                    <span class="label-text">CONFIDENCE</span>
+                                    <h4 id="confidence-text">---</h4>
+                                </div>
+                            </div>
+
+                            <div class="vis-tabs">
+                                <button class="tab-btn active" data-tab="summary">Clinical Summary</button>
+                                <button class="tab-btn" data-tab="heatmap">Heatmap Justification</button>
+                                <button class="tab-btn" data-tab="comparison">Side-by-Side</button>
+                            </div>
+
+                            <div class="tab-content" id="summary-view">
+                                <div class="summary-card">
+                                    <div class="summary-header">
+                                        <span class="summary-badge" id="summary-verdict-badge">---</span>
+                                        <h3>Diagnostic Report</h3>
+                                    </div>
+
+                                    <div class="summary-grid">
+                                        <div class="summary-section">
+                                            <label class="label-text">1. PREDICTION (DIAGNOSIS)</label>
+                                            <p id="summary-prediction-text" class="large-text">---</p>
+                                        </div>
+                                        <div class="summary-section">
+                                            <label class="label-text">2. RELIABILITY (CONFIDENCE)</label>
+                                            <p id="summary-confidence-text" class="large-text">---</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="summary-heatmap-section">
+                                        <label class="label-text">3. VISUAL EVIDENCE (HEATMAP)</label>
+                                        <div class="heatmap-output">
+                                            <img id="summary-overlay-display" class="result-img" src=""
+                                                alt="Clinical Heatmap">
+                                            <div class="heatmap-legend">
+                                                <span class="legend-item"><span class="dot red"></span> High
+                                                    Impact</span>
+                                                <span class="legend-item"><span class="dot blue"></span> Low
+                                                    Impact</span>
+                                            </div>
+                                        </div>
+                                        <p class="vis-caption">AI identified the highlighted regions as the primary
+                                            clinical markers for this diagnosis.</p>
+                                    </div>
+
+                                    <button class="secondary-btn print-btn" onclick="window.print()">Print Diagnostic
+                                        Report</button>
+                                </div>
+                            </div>
+
+                            <div class="tab-content hidden" id="heatmap-view">
+                                <img id="overlay-display" class="result-img" src="" alt="Grad-CAM Heatmap">
+                                <p class="vis-caption"><strong>Physician Interpretation:</strong> Red areas highlight
+                                    specific lung consolidations or opacities contributing to the diagnosis.</p>
+                            </div>
+
+                            <div class="tab-content hidden" id="comparison-view">
+                                <div class="comparison-grid">
+                                    <div>
+                                        <p class="img-label">Original</p>
+                                        <img id="original-display" class="result-img" src="" alt="Original">
+                                    </div>
+                                    <div>
+                                        <p class="img-label">Heatmap</p>
+                                        <img id="overlay-display-2" class="result-img" src="" alt="Overlay">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+
+            <!-- History View -->
+            <div id="history-view" class="view-container hidden">
+                <section class="card full-width">
+                    <div class="table-header">
+                        <h3>Diagnostic Logs</h3>
+                        <button id="refresh-history" class="secondary-btn">Refresh</button>
+                    </div>
+                    <div class="table-wrapper">
+                        <table id="history-table">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Patient ID</th>
+                                    <th>Diagnosis</th>
+                                    <th>Confidence</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="history-list">
+                                <!-- Populated by JS -->
+                                <tr>
+                                    <td colspan="5" class="empty-row text-dim">No diagnostic history found.</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Settings View -->
+            <div id="settings-view" class="view-container hidden">
+                <div class="grid-layout">
+                    <section class="card">
+                        <h3>Model Configuration</h3>
+                        <div class="setting-item">
+                            <label>Default Threshold</label>
+                            <p class="help-text">Base sensitivity for pneumonia detection.</p>
+                            <input type="number" id="default-threshold" value="0.5" step="0.1" min="0" max="1">
+                        </div>
+                        <div class="setting-item">
+                            <label>Compute Device</label>
+                            <span class="badge" id="device-info">Auto (Detecting...)</span>
+                        </div>
+                    </section>
+
+                    <section class="card">
+                        <h3>System Diagnostics</h3>
+                        <div class="diag-item">
+                            <span>Backend Status</span>
+                            <span class="status-indicator online">Online</span>
+                        </div>
+                        <div class="diag-item">
+                            <span>Weights Path</span>
+                            <code class="small-code" id="weights-info">/models/mini_med_net_best.pth</code>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Scripting -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>

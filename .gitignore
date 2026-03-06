@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Dataset (too large for git)
+data/chest_xrays/
+data/*.zip
+!data/.gitkeep
+
+# Trained model weights (large files)
+models/*.pth
+models/*.pt
+models/*.ckpt
+!models/.gitkeep
+
+# Outputs
+outputs/
+results/
+logs/
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Streamlit
+.streamlit/
+
+# Pytest
+.pytest_cache/
+.coverage
+htmlcov/

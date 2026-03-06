@@ -1,0 +1,56 @@
+# MiniMedNet Architecture Configuration
+
+model:
+  name: "MiniMedNet"
+  version: "1.0.0"
+  input_size: 224          # pixels (square)
+  in_channels: 3           # RGB
+  num_classes: 1           # binary: 0=Normal, 1=Pneumonia
+  output_activation: sigmoid
+
+  # Convolutional blocks
+  conv_layers:
+    - out_channels: 32
+      kernel_size: 3
+      padding: 1
+      use_batchnorm: true
+      activation: relu
+      pool: maxpool
+
+    - out_channels: 64
+      kernel_size: 3
+      padding: 1
+      use_batchnorm: true
+      activation: relu
+      pool: maxpool
+
+    - out_channels: 128
+      kernel_size: 3
+      padding: 1
+      use_batchnorm: true
+      activation: relu
+      pool: maxpool
+
+    - out_channels: 256
+      kernel_size: 3
+      padding: 1
+      use_batchnorm: true
+      activation: relu
+      pool: adaptive_avg  # Global Average Pooling → 1×1
+
+  # Classifier head
+  dropout_rate: 0.5
+  fc_hidden: 256           # Input to final FC = 256 (from GAP)
+
+  # Grad-CAM target
+  gradcam_target_layer: "conv4"   # Last conv block name
+
+inference:
+  threshold: 0.5           # Probability cutoff for Pneumonia label
+  device: "auto"           # "auto" → GPU if available, else CPU
+  default_weights: "models/mini_med_net_best.pth"
+  demo_weights: "models/mini_med_net_demo.pth"
+
+  # Grad-CAM overlay settings
+  heatmap_alpha: 0.4       # Transparency of heatmap overlay
+  heatmap_colormap: "jet"  # OpenCV colormap

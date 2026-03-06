@@ -1,0 +1,21 @@
+This directory stores the chest X-ray dataset.
+
+Files in this directory are git-ignored (large dataset files).
+
+Expected structure:
+    data/chest_xrays/
+    ├── train/
+    │   ├── NORMAL/
+    │   └── PNEUMONIA/
+    ├── val/
+    │   ├── NORMAL/
+    │   └── PNEUMONIA/
+    └── test/
+        ├── NORMAL/
+        └── PNEUMONIA/
+
+Download:
+    python scripts/download_dataset.py
+
+Or manually from:
+    https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia
