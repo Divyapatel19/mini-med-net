@@ -364,12 +364,35 @@ This project is licensed under the **MIT License** — see [LICENSE](LICENSE) fo
 
 ---
 
-## 🙌 Acknowledgments
+## 🙌 Acknowledgements
 
-- **Kaggle** — Chest X-Ray Images (Pneumonia) dataset by Paul Mooney
-- **PyTorch** — Deep learning framework
-- **Grad-CAM** — Selvaraju et al., 2017 ([Paper](https://arxiv.org/abs/1610.02391))
-- **ResNet** — He et al., 2016 ([Paper](https://arxiv.org/abs/1512.03385))
+This project would not have been possible without the following resources, tools, papers, and people:
+
+### 📂 Dataset
+- **[Chest X-Ray Images (Pneumonia)](https://www.kaggle.com/datasets/paultimothymooney/chest-xray-pneumonia)** by **Paul Mooney** on Kaggle — the primary dataset used for training and evaluation, containing 5,863 labeled chest X-ray images from Guangzhou Women and Children's Medical Center.
+
+### 🧠 Research Papers
+- **Grad-CAM** — *Selvaraju, R. R., et al. (2017). "Grad-CAM: Visual Explanations from Deep Networks via Gradient-based Localization."* ICCV 2017. [[Paper](https://arxiv.org/abs/1610.02391)]
+- **ResNet** — *He, K., Zhang, X., Ren, S., & Sun, J. (2016). "Deep Residual Learning for Image Recognition."* CVPR 2016. [[Paper](https://arxiv.org/abs/1512.03385)]
+- **Transfer Learning for Medical Imaging** — *Raghu, M., et al. (2019). "Transfusion: Understanding Transfer Learning for Medical Imaging."* NeurIPS 2019. [[Paper](https://arxiv.org/abs/1902.07208)]
+
+### 🛠️ Frameworks & Libraries
+- **[PyTorch](https://pytorch.org/)** — Deep learning framework for model training and inference
+- **[Flask](https://flask.palletsprojects.com/)** — Lightweight Python web framework for the clinical dashboard
+- **[OpenCV](https://opencv.org/)** — Computer vision library for image processing and heatmap colorization
+- **[scikit-learn](https://scikit-learn.org/)** — Machine learning metrics (ROC-AUC, F1, Precision, Recall)
+- **[Pillow (PIL)](https://pillow.readthedocs.io/)** — Python image handling
+- **[Matplotlib](https://matplotlib.org/)** & **[Seaborn](https://seaborn.pydata.org/)** — Visualization of evaluation plots
+- **[tqdm](https://tqdm.github.io/)** — Training progress bars
+- **[pytest](https://pytest.org/)** — Test suite framework
+
+### 👤 Developer
+- **Divya Patel** — Project design, architecture, implementation, training pipeline, and web interface
+  - GitHub: [@Divyapatel19](https://github.com/Divyapatel19)
+
+### 🏫 Inspiration
+- Inspired by the growing need for **explainable AI (XAI)** in clinical settings, where model trust and transparency are as important as accuracy.
+- Special thanks to the open-source AI and medical imaging community for maintaining publicly available datasets and reproducible research.
 
 ---
 
